@@ -34,7 +34,7 @@
 
 Name:           java_cup
 Version:        0.11a
-Release:        6
+Release:        8
 Summary:        Java source interpreter
 License:        BSD and LGPLv2
 URL:            http://www.cs.princeton.edu/%7Eappel/modern/java/CUP/
