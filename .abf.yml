@@ -1,2 +1,5 @@
 sources:
   java_cup-0.11a.tar.bz2: 3b1c23d29cb082f0e5b901cef39e93f08927878e
+  java_cup-0.11a-15.1-omv2014.1.noarch.rpm: da426f7eec51fb05194452826f08a33404c44433
+  java_cup-javadoc-0.11a-15.1-omv2014.1.noarch.rpm: 6880dd7070134b11f84ba4465a504924f10efc2c
+  java_cup-manual-0.11a-15.1-omv2014.1.noarch.rpm: c95bda03c944f16a3ebeb4cc77a22efc2932b28e
