@@ -39,7 +39,7 @@ Release:        15.2%{?dist}
 Epoch:          1
 Summary:        Java source interpreter
 License:        MIT
-URL:            http://www.cs.princeton.edu/%7Eappel/modern/java/CUP/
+URL:            http://www.cs.princeton.edu/~appel/modern/java/CUP/
 #svn export -r 21 https://www2.in.tum.de/repos/cup/develop/ java_cup-0.11a 
 #tar cjf java_cup-0.11a.tar.bz2 java_cup-0.11a/
 Source0:        java_cup-0.11a.tar.bz2
