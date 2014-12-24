@@ -35,9 +35,10 @@
 
 Name:           java_cup
 Version:        0.11a
-Release:        15.2%{?dist}
+Release:        18.1
 Epoch:          1
 Summary:        Java source interpreter
+Group:		Development/Java
 License:        MIT
 URL:            http://www.cs.princeton.edu/~appel/modern/java/CUP/
 #svn export -r 21 https://www2.in.tum.de/repos/cup/develop/ java_cup-0.11a 
@@ -138,11 +139,9 @@ install -pm 644 pom.xml %{buildroot}%{_mavenpomdir}/JPP-%{name}.pom
 install -d -m 755 %{buildroot}%{_javadocdir}/%{name}
 cp -pr dist/javadoc/* %{buildroot}%{_javadocdir}/%{name}
 
-%files
+%files -f .mfiles
 %doc changelog.txt LICENSE.txt
 %{_javadir}/*
-%{_mavenpomdir}/*
-%{_mavendepmapfragdir}/*
 
 %files manual
 %doc manual.html LICENSE.txt
