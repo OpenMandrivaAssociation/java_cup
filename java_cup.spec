@@ -35,7 +35,7 @@
 
 Name:           java_cup
 Version:        0.11a
-Release:        18.3
+Release:        18.4
 Epoch:          1
 Summary:        Java source interpreter
 Group:		Development/Java
