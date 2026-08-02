@@ -29,21 +29,21 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-%define pkg_version     11a
+%define pkg_version     11b
 %define section         free
 %define with_bootstrap  0
 
 Name:           java_cup
-Version:        0.11a
-Release:        18.4
+Version:        0.11b
+Release:        1
 Epoch:          1
 Summary:        Java source interpreter
 Group:		Development/Java
 License:        MIT
 URL:            https://www.cs.princeton.edu/~appel/modern/java/CUP/
-#svn export -r 21 https://www2.in.tum.de/repos/cup/develop/ java_cup-0.11a 
-#tar cjf java_cup-0.11a.tar.bz2 java_cup-0.11a/
-Source0:        java_cup-0.11a.tar.bz2
+# git clone https://github.com/DrMichaelPetter/cup.git
+# git -C cup archive --prefix java_cup-0.11b/ c35ed3ab0cde2310af9b01321c930349c7c797e2 | bzip2 > java_cup-0.11b.tar.bz2
+Source0:        java_cup-0.11b.tar.bz2
 Source1:        java_cup-pom.xml
 # Add OSGi manifests
 Source2:        %{name}-MANIFEST.MF
@@ -51,10 +51,11 @@ Source4:        %{name}-runtime-MANIFEST.MF
 # Taken from http://www2.cs.tum.edu/projects/cup/
 Source3:        LICENSE.txt
 Patch0:         %{name}-build.patch
-Patch1:         java_cup-0.11a-manifest.patch
+Patch1:         java_cup-0.11b-manifest.patch
 
 # Patch from eclipe-pdt to get around generated actions methods exceeding the 65535 bytes limit:
 # http://git.eclipse.org/c/pdt/org.eclipse.pdt.git/tree/plugins/org.eclipse.php.core.parser/javacup10k_split_do_action_method.diff
+# 0.11b already splits via UPPERLIMIT; patch keeps a more aggressive limit for large grammars.
 Patch2:         javacup10k_split_do_action_method.diff
 
 BuildRequires: ant
@@ -62,7 +63,7 @@ BuildRequires: java-devel
 BuildRequires: jpackage-utils >= 0:1.5
 BuildRequires: jflex
 %if ! %{with_bootstrap}
-BuildRequires: java_cup >= 1:0.11a
+BuildRequires: java_cup >= 1:0.11b
 %endif
 BuildRequires: zip
 
@@ -86,11 +87,11 @@ Summary:        Documentation for java_cup
 Documentation for java_cup.
 
 %prep
-%setup -q 
-%patch0 -b .build
-%patch1 -p1 -b .manifest
+%setup -q
+%patch -P 0 -b .build
+%patch -P 1 -p1 -b .manifest
 pushd src
-%patch2 -p1 -b .orig
+%patch -P 2 -p1 -b .orig
 popd
 cp %{SOURCE1} pom.xml
 cp %{SOURCE3} .
@@ -100,10 +101,10 @@ find -name "*.class" -delete
 
 %if ! %{with_bootstrap}
 # remove prebuilt JFlex
-rm -rf java_cup-0.11a/bin/JFlex.jar
+rm -rf bin/JFlex.jar
 
 # remove prebuilt java_cup, if not bootstrapping
-rm -rf java_cup-0.11a/bin/java-cup-11.jar
+rm -rf bin/java-cup-11.jar
 %endif
 
 %build
